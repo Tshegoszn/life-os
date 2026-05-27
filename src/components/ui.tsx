@@ -8,11 +8,13 @@ export function Card({
   className = '',
   hover = false,
   onClick,
+  style,
 }: {
   children: React.ReactNode
   className?: string
   hover?: boolean
   onClick?: () => void
+  style?: React.CSSProperties
 }) {
   return (
     <motion.div

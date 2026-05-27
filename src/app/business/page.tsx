@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  BarChart,
+  BarChart as RechartsBarChart,
   Bar,
   XAxis,
   YAxis,
@@ -17,6 +17,7 @@ import {
   Plus,
   X,
   Filter,
+  BarChart3,
 } from 'lucide-react'
 import {
   Card,
@@ -297,14 +298,21 @@ export default function BusinessPage() {
       {tab === 'overview' && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <Card>
-            <SectionHeader title="Revenue by month" icon={<BarChart size={13} />} />
+            <SectionHeader title="Revenue by month" icon={<BarChart3 size={13} />} />
             <ResponsiveContainer width="100%" height={160}>
-              <BarChart data={revData} barSize={28}>
+              <RechartsBarChart data={revData} barSize={28}>
                 <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#888' }} axisLine={false} tickLine={false} />
                 <YAxis hide />
-                <Tooltip formatter={(v: number) => `R${v.toLocaleString()}`} contentStyle={{ fontSize: 11, borderRadius: 8, border: '0.5px solid #F5C8E2' }} />
+               <Tooltip
+  formatter={(value) => `R${Number(value).toLocaleString()}`}
+  contentStyle={{
+    fontSize: 11,
+    borderRadius: 8,
+    border: '0.5px solid #F5C8E2',
+  }}
+/>
                 <Bar dataKey="rev" radius={[4, 4, 0, 0]} fill="#F5C8E2" />
-              </BarChart>
+              </RechartsBarChart>
             </ResponsiveContainer>
           </Card>
           <Card>
